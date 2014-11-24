@@ -3,10 +3,27 @@
 library(quantmod)
 source("helpers.R")
 
-shinyServer(function(input, output) {
+shinyServer(function(input, output, session) {
   symbol <<- ""
+  cursymb <<- ""
   
-  dataInput <- reactive({  
+  observe({
+    clean <- FALSE
+    if(input$symb != "" && input$symb != cursymb) {
+      cursymb <<- input$symb
+      clean <- TRUE
+    }
+    if(clean) {
+      updateSelectInput(session, "comsymb", selected = '(Select)')
+    }
+  })
+  
+  dataInput <- reactive({
+    validate(
+      need(input$symb != "" || input$comsymb != "(Select)", "Please select or input a stock symbol to examine"),
+      errorClass = "symberror"
+    )
+    
     if(input$comsymb == '(Select)') {
       symbol <<- input$symb
     } else {

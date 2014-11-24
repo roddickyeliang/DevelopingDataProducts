@@ -3,7 +3,10 @@ library(shiny)
 comsymb <- c('(Select)','AAPL', 'BABA', 'FB', 'GOOG', 'IBM', 'MS', 'MSFT', 'MSI', 'MSTR', 'SAP', 'TWTR', 'YHOO')
 
 shinyUI(fluidPage(
-  titlePanel("Basic Stock Price Analysis"), 
+  
+  includeCSS("styles.css"),
+  
+  h1("Basic Stock Price Analysis"), 
   
   sidebarLayout(
     sidebarPanel(
@@ -21,7 +24,7 @@ shinyUI(fluidPage(
       
       selectInput('comsymb', 'Choose Common Symbol from List', comsymb, selected = "(Select)"),
       
-      textInput("symb", "Or Input Symbol", "MSTR"),
+      textInput("symb", "Or Input Symbol", ""),
         
       dateRangeInput("dates", 
         "Date range",

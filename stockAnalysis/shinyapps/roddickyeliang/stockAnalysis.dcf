@@ -1,5 +1,4 @@
 name: stockAnalysis
 account: roddickyeliang
-bundleId: 79284
-url:
-    http://roddickyeliang.shinyapps.io/stockAnalysis
+bundleId: 83005
+url: http://roddickyeliang.shinyapps.io/stockAnalysis
